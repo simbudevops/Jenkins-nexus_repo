@@ -1,0 +1,32 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  MAVEN_CLI_OPTS: "-B -s settings-ci.xml"
+
+cache:
+  paths:
+    - .m2/repository
+
+default:
+  image: maven:3.9.9-eclipse-temurin-21
+
+build:
+  stage: build
+  script:
+    - mvn -B clean compile
+
+test:
+  stage: test
+  script:
+    - mvn -B test
+
+deploy:
+  stage: deploy
+  script:
+    - mvn $MAVEN_CLI_OPTS deploy -DskipTests
+  only:
+    - main
