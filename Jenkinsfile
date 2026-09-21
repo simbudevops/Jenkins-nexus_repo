@@ -31,7 +31,7 @@ pipeline {
 
         stage('Deploy to Nexus') {
             steps {
-                configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+                configFileProvider([configFile(fileId: 'settings.xml', variable: 'MAVEN_SETTINGS')]) {
                     sh 'mvn -s $MAVEN_SETTINGS deploy -DskipTests'
                 }
             }
