@@ -11,6 +11,12 @@ pipeline {
     }
 
     stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://gitlab.com/simbudevops/nexus-project.git'
+            }
+        }
+
         stage('Compile') {
             steps {
                 sh 'mvn clean compile'
