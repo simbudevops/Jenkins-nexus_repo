@@ -40,7 +40,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/*.war', fingerprint: true, allowEmptyArchive: true
+            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true, allowEmptyArchive: true
         }
     }
 }
